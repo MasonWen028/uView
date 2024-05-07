@@ -5,34 +5,34 @@ import I18nSwitcher from '@/components/I18nSwicher';
 import {useTranslation} from 'react-i18next';
 import {responsiveFontSize} from 'react-native-responsive-dimensions';
 
-interface PageNavProps {
-  desc: string;
-}
+// interface PageNavProps {
+//   desc?: string;
+// }
 
-function PageNav({desc}: PageNavProps): React.JSX.Element {
+function PageNav(): React.JSX.Element {
   const {t} = useTranslation();
 
   return (
-    <View style={styles.navWrap}>
-      <View style={styles.navTitle}>
-        <Image
-          style={styles.logo}
-          source={{
-            uri: 'https://cdn.uviewui.com/uview/common/logo.png',
-          }}
-        />
-        <View style={styles.navInfo}>
-          <Text style={styles.navTitleText}>{t('common.title')}</Text>
-          <Text style={styles.navSlogan}>{t('common.intro')}</Text>
+    <>
+      <View style={styles.navWrap}>
+        <View style={styles.navTitle}>
+          <Image
+            style={styles.logo}
+            source={require('assets/images/logo.png')}
+          />
+          <View style={styles.navInfo}>
+            <Text style={styles.navTitleText}>{t('common.title')}</Text>
+            <Text style={styles.navSlogan}>{t('common.intro')}</Text>
+          </View>
+        </View>
+        <View style={styles.navDesc}>
+          <Text>{t('components.desc')}</Text>
+        </View>
+        <View style={styles.lang}>
+          <I18nSwitcher />
         </View>
       </View>
-      <View style={styles.navDesc}>
-        <Text>{desc}</Text>
-      </View>
-      <View style={styles.lang}>
-        <I18nSwitcher />
-      </View>
-    </View>
+    </>
   );
 }
 

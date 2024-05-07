@@ -81,6 +81,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
+    borderTopWidth: 1,
+    borderTopColor: '#e0e0e0',
   },
   tabbarBorder: {
     position: 'absolute',

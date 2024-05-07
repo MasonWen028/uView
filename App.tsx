@@ -18,13 +18,9 @@ import {
 import {Provider} from 'react-redux';
 import store from './src/stores';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import PageNav from './src/components/Layouts/page-nav';
+import PageNav from './src/components/Layouts/PageNav';
 import Tabbar from './src/components/Layouts/Tabbar';
-import Loading from './src/components/Loading';
-
-function Feed() {
-  return <Loading show={true} type="flower" size={30} />;
-}
+import Components from './src/pages/components';
 
 function Profile() {
   return (
@@ -94,7 +90,7 @@ function App(): React.JSX.Element {
   const renderScreen = () => {
     switch (currentScreen) {
       case 'Feed':
-        return <Feed />;
+        return <Components />;
       case 'Notifications':
         return <Notifications />;
       case 'Profile':
@@ -123,7 +119,7 @@ function App(): React.JSX.Element {
           barStyle={isDarkMode ? 'light-content' : 'dark-content'}
           backgroundColor={backgroundStyle.backgroundColor}
         />
-        <PageNav desc={useColorScheme() + ''} />
+        <PageNav />
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={backgroundStyle}>

@@ -7,6 +7,8 @@ module.exports = {
         root: ['./src'],
         alias: {
           '@': './src',
+          // eslint-disable-next-line prettier/prettier
+          'assets': './assets',
         },
       },
     ],

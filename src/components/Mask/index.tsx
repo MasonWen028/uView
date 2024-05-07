@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import {Animated, Modal, StatusBar, StyleSheet} from 'react-native';
+import {Animated, Modal, StyleSheet} from 'react-native';
 
 interface MaskProps {
   children: React.JSX.Element;
@@ -10,15 +10,15 @@ interface MaskProps {
 function Mask({children, show = false}: MaskProps): React.JSX.Element {
   const opacity = useRef(new Animated.Value(0)).current;
 
-  const handleModalShow = () => {
-    StatusBar.setTranslucent(true);
-    StatusBar.setBackgroundColor('rgba(0, 0, 0, 0.6)');
-  };
+  // const handleModalShow = () => {
+  //   StatusBar.setTranslucent(true);
+  //   StatusBar.setBackgroundColor('rgba(0, 0, 0, 0.6)');
+  // };
 
-  const handleModalHide = () => {
-    StatusBar.setTranslucent(false);
-    StatusBar.setBackgroundColor('transparent');
-  };
+  // const handleModalHide = () => {
+  //   StatusBar.setTranslucent(false);
+  //   StatusBar.setBackgroundColor('transparent');
+  // };
 
   useEffect(() => {
     Animated.timing(opacity, {
@@ -45,20 +45,11 @@ function Mask({children, show = false}: MaskProps): React.JSX.Element {
       },
     });
     return (
-      <>
+      <Modal transparent={true} statusBarTranslucent visible={show}>
         <Animated.View style={[styles.mask, {opacity}]}>
-          <StatusBar backgroundColor={'rgba(0, 0, 0, 0.6)'} />
+          {children}
         </Animated.View>
-        <Modal
-          onShow={handleModalShow}
-          onDismiss={handleModalHide}
-          transparent={true}
-          visible={show}>
-          <Animated.View style={[styles.mask, {opacity}]}>
-            {children}
-          </Animated.View>
-        </Modal>
-      </>
+      </Modal>
     );
   } else {
     return <></>;

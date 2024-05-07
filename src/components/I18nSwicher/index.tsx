@@ -4,9 +4,12 @@ import {StyleSheet, View, Text, TouchableOpacity, Animated} from 'react-native';
 import {responsiveFontSize} from 'react-native-responsive-dimensions';
 import {useDispatch, useSelector} from 'react-redux';
 import i18n from '@/utils/i18n';
+import Loading from '../Loading';
 
 function I18nSwitcher(): React.JSX.Element {
   const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(false);
 
   const {lang} = useSelector((state: any) => state.lang);
 
@@ -16,6 +19,7 @@ function I18nSwitcher(): React.JSX.Element {
 
   const switchLang = () => {
     setAnimationRuning(() => true);
+    setLoading(() => true);
     Animated.timing(fadeAnim, {
       toValue: 0,
       duration: 50,
@@ -30,6 +34,7 @@ function I18nSwitcher(): React.JSX.Element {
         useNativeDriver: true,
       }).start();
       setAnimationRuning(() => false);
+      setLoading(() => false);
     });
   };
 
@@ -44,6 +49,7 @@ function I18nSwitcher(): React.JSX.Element {
           <Text style={styles.backer}>{lang !== 'en' ? 'En' : '中'}</Text>
         </View>
       </View>
+      <Loading show={loading} type="flower" />
     </TouchableOpacity>
   );
 }
