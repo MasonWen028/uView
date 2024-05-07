@@ -6,6 +6,7 @@ import '@formatjs/intl-pluralrules/locale-data/zh';
 import '@formatjs/intl-pluralrules/locale-data/en';
 
 i18n.use(initReactI18next).init({
+  compatibilityJSON: 'v3',
   resources: {
     en: {
       translation: en,
@@ -19,5 +20,6 @@ i18n.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   },
+  pluralSeparator: '',
 });
 export default i18n;

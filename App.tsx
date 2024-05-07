@@ -20,13 +20,10 @@ import store from './src/stores';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import PageNav from './src/components/Layouts/page-nav';
 import Tabbar from './src/components/Layouts/Tabbar';
+import Loading from './src/components/Loading';
 
 function Feed() {
-  return (
-    <View>
-      <Text>Feed!</Text>
-    </View>
-  );
+  return <Loading show={true} type="circle" />;
 }
 
 function Profile() {
@@ -92,7 +89,7 @@ function Notifications() {
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const [currentScreen, setCurrentScreen] = useState('Feed');
+  const [currentScreen] = useState('Feed');
 
   const renderScreen = () => {
     switch (currentScreen) {
@@ -132,7 +129,7 @@ function App(): React.JSX.Element {
           style={backgroundStyle}>
           {renderScreen()}
         </ScrollView>
-        <Tabbar current={currentScreen} setCurrent={setCurrentScreen} />
+        <Tabbar />
       </SafeAreaView>
     </Provider>
   );
