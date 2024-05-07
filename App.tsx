@@ -23,7 +23,7 @@ import Tabbar from './src/components/Layouts/Tabbar';
 import Loading from './src/components/Loading';
 
 function Feed() {
-  return <Loading show={true} type="circle" />;
+  return <Loading show={true} type="flower" size={30} />;
 }
 
 function Profile() {

@@ -29,7 +29,7 @@ function Mask({children, show = false}: MaskProps): React.JSX.Element {
   }, [opacity]);
 
   if (show) {
-    const style = StyleSheet.create({
+    const styles = StyleSheet.create({
       mask: {
         position: 'absolute',
         flex: 1,
@@ -46,15 +46,15 @@ function Mask({children, show = false}: MaskProps): React.JSX.Element {
     });
     return (
       <>
-        <Animated.View style={[style.mask, {opacity}]}>
-          <StatusBar />
+        <Animated.View style={[styles.mask, {opacity}]}>
+          <StatusBar backgroundColor={'rgba(0, 0, 0, 0.6)'} />
         </Animated.View>
         <Modal
           onShow={handleModalShow}
           onDismiss={handleModalHide}
           transparent={true}
           visible={show}>
-          <Animated.View style={[style.mask, {opacity}]}>
+          <Animated.View style={[styles.mask, {opacity}]}>
             {children}
           </Animated.View>
         </Modal>
