@@ -4,13 +4,18 @@ import {responsiveFontSize} from 'react-native-responsive-dimensions';
 import {IconOutline} from '@ant-design/icons-react-native';
 import {CellProps} from '../type';
 import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
 function Cell({icon, title, title_en, path}: CellProps): React.JSX.Element {
-  const handlePress = () => {
-    console.log(path);
-  };
+  const navigation = useNavigation();
 
   const {lang} = useSelector((state: any) => state.lang);
+
+  const name = lang === 'en' ? title_en : title;
+
+  const handlePress = () => {
+    navigation.navigate(path, {title: name});
+  };
 
   const getIcon = () => {
     return 'https://cdn.uviewui.com/uview/example/' + icon + '.png';

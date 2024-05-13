@@ -1,0 +1,168 @@
+[
+  {
+    "category": "主色调",
+    "items": [
+      {
+        "name": "Primary",
+        "color": "#2979ff"
+      },
+      {
+        "name": "Dark",
+        "color": "#2b85e4"
+      },
+      {
+        "name": "Disabled",
+        "color": "#a0cfff"
+      },
+      {
+        "name": "Light",
+        "color": "#ecf5ff",
+        "textColor": "#909399"
+      }
+    ]
+  },
+  {
+    "category": "Error",
+    "items": [
+      {
+        "name": "Error",
+        "color": "#fa3534"
+      },
+      {
+        "name": "Dark",
+        "color": "#dd6161"
+      },
+      {
+        "name": "Disabled",
+        "color": "#fab6b6"
+      },
+      {
+        "name": "Light",
+        "color": "#fef0f0",
+        "textColor": "#909399"
+      }
+    ]
+  },
+  {
+    "category": "Warning",
+    "items": [
+      {
+        "name": "Warning",
+        "color": "#ff9900"
+      },
+      {
+        "name": "Dark",
+        "color": "#f29100"
+      },
+      {
+        "name": "Disabled",
+        "color": "#fcbd71"
+      },
+      {
+        "name": "Light",
+        "color": "#fdf6ec",
+        "textColor": "#909399"
+      }
+    ]
+  },
+  {
+    "category": "Info",
+    "items": [
+      {
+        "name": "Info",
+        "color": "#909399"
+      },
+      {
+        "name": "Dark",
+        "color": "#82848a"
+      },
+      {
+        "name": "Disabled",
+        "color": "#c8c9cc"
+      },
+      {
+        "name": "Light",
+        "color": "#f4f4f5",
+        "textColor": "#909399"
+      }
+    ]
+  },
+  {
+    "category": "Success",
+    "items": [
+      {
+        "name": "Success",
+        "color": "#19be6b"
+      },
+      {
+        "name": "Dark",
+        "color": "#18b566"
+      },
+      {
+        "name": "Disabled",
+        "color": "#71d5a1"
+      },
+      {
+        "name": "Light",
+        "color": "#dbf1e1",
+        "textColor": "#909399"
+      }
+    ]
+  },
+  {
+    "category": "文字颜色",
+    "items": [
+      {
+        "name": "主要文字",
+        "color": "#303133"
+      },
+      {
+        "name": "常规文字",
+        "color": "#606266"
+      },
+      {
+        "name": "次要文字",
+        "color": "#909399"
+      },
+      {
+        "name": "占位文字",
+        "color": "#c0c4cc"
+      }
+    ]
+  },
+  {
+    "category": "边框颜色",
+    "items": [
+      {
+        "name": "一级边框",
+        "color": "#dcdfe6",
+        "textColor": "#909399"
+      },
+      {
+        "name": "二级边框",
+        "color": "#e4e7ed",
+        "textColor": "#909399"
+      },
+      {
+        "name": "三级边框",
+        "color": "#ebeef5",
+        "textColor": "#909399"
+      },
+      {
+        "name": "四级边框",
+        "color": "#f2f6fc",
+        "textColor": "#909399"
+      }
+    ]
+  },
+  {
+    "category": "背景颜色",
+    "items": [
+      {
+        "name": "背景颜色",
+        "color": "#f3f4f6",
+        "textColor": "#909399"
+      }
+    ]
+  }
+]

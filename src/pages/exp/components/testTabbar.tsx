@@ -1,15 +1,11 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {responsiveFontSize} from 'react-native-responsive-dimensions';
-import TabBarItem from './components/TabbarItem';
-import {CustomBottomTabBarProps, CustomTabBarOptions} from './type';
+import TabBarItem from './testTabItem';
+import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
+import {CustomTabBarOptions} from '../../../components/Layouts/Tabbar/type';
 
-function Tabbar({
-  state,
-  descriptors,
-  navigation,
-  selectedColor,
-}: CustomBottomTabBarProps) {
+function Tabbar({state, descriptors, navigation}: BottomTabBarProps) {
   const tabItemFontSize = responsiveFontSize(2);
   return (
     <SafeAreaView style={styles.tabbarBottom}>
@@ -36,17 +32,18 @@ function Tabbar({
             }
           };
           console.log(descriptors);
+          // 根据需要使用 options 或其他自定义逻辑设置图标等
           return (
             <TabBarItem
               key={route.key}
               label={label as string}
-              selectedColor={selectedColor}
+              selectedColor="#e91e63"
               selected={isFocused}
               onPress={onPress}
               iconName={options.iconName as string}
               iconSize={tabItemFontSize}
               labelSize={tabItemFontSize}
-              name={''}
+              name={''} // 需要的其他 props
             />
           );
         })}

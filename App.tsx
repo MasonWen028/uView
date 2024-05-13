@@ -125,7 +125,6 @@ function App(): React.JSX.Element {
           style={backgroundStyle}>
           {renderScreen()}
         </ScrollView>
-        <Tabbar />
       </SafeAreaView>
     </Provider>
   );
