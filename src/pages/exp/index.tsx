@@ -11,6 +11,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import IconDisplay from '../Icons';
 import Images from '../Images';
 import Buttons from '../button';
+import Layout from '../layout';
 
 function MyTabs() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -57,6 +58,10 @@ function MyTabs() {
     {
       name: 'button',
       component: Buttons,
+    },
+    {
+      name: 'layout',
+      component: Layout,
     },
   ];
 
