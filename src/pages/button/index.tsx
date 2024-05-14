@@ -1,17 +1,52 @@
-import ImageWithStatus from '@/components/ImageWithStatus';
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import ConfigBox from '@/components/Layouts/ConfigBox';
-import RotatingComponent from '@/components/Loading/components/RotatingComponent';
+import Button from '@/components/Button';
 
 const Buttons = () => {
   const [btnTheme, setBtnTheme] = useState('default');
 
-  const [customLoading, setCustomLoading] = useState(false);
+  const [btnSize, setBtnSize] = useState('default');
 
-  const [customError, setCustomError] = useState(false);
+  const [btnShape, setBtnShape] = useState('angle');
 
-  const [isCircle, setIsCircle] = useState(true);
+  const [btnRipple, setBtnRipple] = useState(true);
+
+  // const [btnThinBorder, setThinBorder] = useState(true);
+
+  const [btnLoading, setLoading] = useState(false);
+
+  const handleLoadingChanged = (val: number) => {
+    setLoading(val === 0);
+  };
+
+  const handleRippleChanged = (val: number) => {
+    setBtnRipple(val === 0);
+  };
+
+  const handleShapeChanged = (val: number) => {
+    let target = 'angle';
+    if (val === 1) {
+      target = 'round';
+    }
+    setBtnShape(target);
+  };
+
+  const handleSizeChanged = (val: number) => {
+    let target = 'default';
+    switch (val) {
+      case 0:
+        target = 'default';
+        break;
+      case 1:
+        target = 'medium';
+        break;
+      case 2:
+        target = 'mini';
+        break;
+    }
+    setBtnSize(target);
+  };
 
   const handleThemeChanged = (val: number) => {
     let target = 'default';
@@ -28,24 +63,16 @@ const Buttons = () => {
       case 3:
         target = 'warning';
         break;
-      case 3:
+      case 4:
         target = 'success';
         break;
     }
     setBtnTheme(target);
   };
 
-  const handleCustomSetting = (val: number) => {
-    setCustomLoading(val === 1);
-  };
-
-  const handleCustomError = (val: number) => {
-    setCustomError(val === 1);
-  };
-
-  const handleShapeChanged = (val: number) => {
-    setIsCircle(val !== 1);
-  };
+  // const handleThinBorderChanged = (val: number) => {
+  //   setThinBorder(val === 0);
+  // };
 
   const items = [
     {
@@ -57,45 +84,57 @@ const Buttons = () => {
       selectedChanged: handleThemeChanged,
     },
     {
-      states: ['默认', '自定义'],
-      states_en: ['default', 'custom'],
-      label: '加载中状态',
-      label_en: 'Loading status',
+      states: ['默认', '中等', '迷你'],
+      states_en: ['default', 'medium', 'mini'],
+      label: '尺寸大小',
+      label_en: 'button size',
       selected: 0,
-      selectedChanged: handleCustomSetting,
+      selectedChanged: handleSizeChanged,
     },
     {
-      states: ['默认', '自定义'],
-      states_en: ['default', 'custom'],
-      label: '加载失败状态',
-      label_en: 'Loading failure status',
-      selected: 0,
-      selectedChanged: handleCustomError,
-    },
-    {
-      states: ['方形', '圆形'],
-      states_en: ['cube', 'circle'],
+      states: ['直角', '圆角'],
+      states_en: ['angle', 'round'],
       label: '形状',
       label_en: 'Shape',
       selected: 0,
       selectedChanged: handleShapeChanged,
+    },
+    {
+      states: ['是', '否'],
+      states_en: ['Yes', 'No'],
+      label: '水波纹',
+      label_en: 'Ripple',
+      selected: 0,
+      selectedChanged: handleRippleChanged,
+    },
+    // {
+    //   states: ['是', '否'],
+    //   states_en: ['Yes', 'No'],
+    //   label: '细边框',
+    //   label_en: 'Thiner border',
+    //   selected: 0,
+    //   selectedChanged: handleThinBorderChanged,
+    // },
+    {
+      states: ['是', '否'],
+      states_en: ['Yes', 'No'],
+      label: '加载中',
+      label_en: 'Is loading',
+      selected: 1,
+      selectedChanged: handleLoadingChanged,
     },
   ];
 
   return (
     <View style={styles.main}>
       <View style={styles.warp}>
-        <ImageWithStatus
-          size={150}
-          state={imgState}
-          loading={
-            customLoading ? (
-              <RotatingComponent type="circle" rotate={true} />
-            ) : undefined
-          }
-          error={customError ? <Text>加载错误</Text> : undefined}
-          shape={isCircle ? 'circle' : 'cube'}
-          src="https://reactnative.dev/img/tiny_logo.png"
+        <Button
+          theme={btnTheme as any}
+          size={btnSize as any}
+          shape={btnShape as any}
+          ripple={btnRipple}
+          // thinBorder={btnThinBorder}
+          isLoading={btnLoading}
         />
       </View>
       <View style={styles.configWrap}>
@@ -116,6 +155,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     justifyContent: 'center',
     alignItems: 'center',
+    height: 150,
   },
   main: {
     backgroundColor: '#fff',

@@ -1,54 +1,153 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {responsiveFontSize} from 'react-native-responsive-dimensions';
+import Ripple from 'react-native-material-ripple';
+import InnerComponent from './components/InnerComponent';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 interface ButtonProps {
-  theme: string;
-  size: 'default' | 'middle' | 'mini';
+  theme: 'default' | 'primary' | 'warning' | 'error' | 'success';
+  size: 'default' | 'medium' | 'mini';
   shape: 'angle' | 'round';
-  hollow: boolean;
   ripple: boolean;
-  thinBorder: boolean;
-  siLoading: boolean;
+  isLoading: boolean;
+  disabled?: boolean;
 }
 
-const Button = (): React.JSX.Element => {
+const Button = ({
+  theme = 'default',
+  size = 'default',
+  shape = 'angle',
+  ripple = false,
+  isLoading = false,
+  disabled = false,
+}: ButtonProps): React.JSX.Element => {
+  let backColor = '#ffffff';
+  let textColor = '#606266';
+  let borderColor = '#c0c4cc';
+  let fontSize = responsiveFontSize(2.5);
+  let height = responsiveFontSize(5.5);
+  let borderRadius = 5;
+  let space = responsiveFontSize(5);
+  switch (theme) {
+    case 'primary':
+      backColor = '#2979ff';
+      textColor = '#ffffff';
+      borderColor = '#2979ff';
+      break;
+    case 'primary':
+      backColor = '#ffffff';
+      textColor = '#606266';
+      borderColor = '#c0c4cc';
+      break;
+    case 'error':
+      backColor = '#fa3534';
+      textColor = '#ffffff';
+      borderColor = '#fa3534';
+      break;
+    case 'warning':
+      backColor = '#ff9900';
+      textColor = '#fff';
+      borderColor = '#ff9900';
+      break;
+    case 'success':
+      backColor = '#19be6b';
+      textColor = '#fff';
+      borderColor = '#19be6b';
+      break;
+  }
+  switch (size) {
+    case 'medium':
+      fontSize = responsiveFontSize(1.6);
+      height = responsiveFontSize(4.5);
+      space = responsiveFontSize(4);
+      break;
+    case 'mini':
+      fontSize = responsiveFontSize(1.4);
+      height = responsiveFontSize(3.5);
+      space = responsiveFontSize(3);
+      break;
+  }
+  if (shape === 'round') {
+    borderRadius = responsiveFontSize(3.5);
+  }
   const btnStyles = StyleSheet.create({
-    btnDefault: {
-      color: '#606266',
-      borderColor: '#c0c4cc',
-      backgroundColor: '#ffffff',
-    },
-    btnPrimary: {
-      color: '#2979ff',
-      borderColor: '#a0cfff',
-      backgroundColor: '#ecf5ff',
-    },
-    btnError: {
-      color: '#fa3534',
-      borderColor: '#fab6b6',
-      backgroundColor: '#fef0f0',
-    },
-    btnWarning: {
-      color: '#ff9900',
-      borderColor: '#fcbd71',
-      backgroundColor: '#fdf6ec',
-    },
-    btnSuccess: {
-      color: '#19be6b ',
-      borderColor: '#71d5a1',
-      backgroundColor: '#dbf1e1',
-    },
     btnBasis: {
       position: 'relative',
-      padding: 20,
+      paddingLeft: space,
+      paddingRight: space,
+      margin: 5,
       justifyContent: 'center',
       alignItems: 'center',
       alignContent: 'center',
-      borderRadius: 5,
+      fontSize: fontSize,
+      height: height,
+      backgroundColor: backColor,
+      color: textColor,
+      borderRadius: borderRadius,
+      borderColor: borderColor,
+      borderWidth: 1,
+    },
+    btnText: {
+      color: textColor,
+      fontSize: fontSize,
+    },
+    hairlineBorder: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '200%',
+      height: '200%',
+      borderWidth: 0.5,
+      borderColor: '#000',
+      transform: [{scale: 0.5}],
+      zIndex: 1,
+    },
+    hasLoading: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    innerTouchable: {
+      backgroundColor: 'black',
+      alignContent: 'center',
+      alignItems: 'center',
+      flex: 1,
+    },
+    container: {
+      height: height,
     },
   });
-
-  return <View></View>;
+  return (
+    <View style={btnStyles.container}>
+      {ripple && (
+        <Ripple
+          style={btnStyles.btnBasis}
+          rippleColor="rgba(0, 0, 0, .32)"
+          disabled={isLoading || disabled}
+          onPress={() => console.log('Pressed')}>
+          <InnerComponent
+            isLoading={isLoading}
+            style={btnStyles.btnText}
+            text="click me"
+            textColor={textColor}
+          />
+        </Ripple>
+      )}
+      {!ripple && (
+        <TouchableOpacity
+          style={btnStyles.btnBasis}
+          disabled={isLoading || disabled}>
+          <InnerComponent
+            isLoading={isLoading}
+            style={btnStyles.btnText}
+            text="click me"
+            textColor={textColor}
+          />
+          {/* {thinBorder && <View style={btnStyles.hairlineBorder} />} */}
+        </TouchableOpacity>
+      )}
+    </View>
+  );
 };
 
 export default Button;
