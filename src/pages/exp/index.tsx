@@ -12,6 +12,7 @@ import IconDisplay from '../Icons';
 import Images from '../Images';
 import Buttons from '../button';
 import Layout from '../layout';
+import Toast from 'react-native-toast-message';
 
 function MyTabs() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -75,6 +76,7 @@ function MyTabs() {
       <SafeAreaView style={containerStyle}>
         <CustomTabNavigator NavItems={TabItems} StackItems={stackItems} />
       </SafeAreaView>
+      <Toast />
     </Provider>
   );
 }

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import ConfigBox from '@/components/Layouts/ConfigBox';
 import Button from '@/components/Button';
+import Toast from 'react-native-toast-message';
 
 const Buttons = () => {
   const [btnTheme, setBtnTheme] = useState('default');
@@ -11,9 +12,7 @@ const Buttons = () => {
   const [btnShape, setBtnShape] = useState('angle');
 
   const [btnRipple, setBtnRipple] = useState(true);
-
-  // const [btnThinBorder, setThinBorder] = useState(true);
-
+  
   const [btnLoading, setLoading] = useState(false);
 
   const handleLoadingChanged = (val: number) => {
@@ -125,6 +124,14 @@ const Buttons = () => {
     },
   ];
 
+  const handleBtnClicked = () => {
+    Toast.show({
+      type: 'info',
+      text1: 'This is an info message',
+    });
+    console.log('按钮被点击');
+  };
+
   return (
     <View style={styles.main}>
       <View style={styles.warp}>
@@ -133,8 +140,10 @@ const Buttons = () => {
           size={btnSize as any}
           shape={btnShape as any}
           ripple={btnRipple}
+          text="点我"
           // thinBorder={btnThinBorder}
           isLoading={btnLoading}
+          onPress={handleBtnClicked}
         />
       </View>
       <View style={styles.configWrap}>
